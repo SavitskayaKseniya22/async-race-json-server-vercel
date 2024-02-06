@@ -2,12 +2,14 @@ const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
+const cors = require('cors');
 
 const PORT = 3000;
 
 const state = { velocity: {}, blocked: {} };
 
 server.use(middlewares);
+server.use(cors());
 
 server.patch('/engine', (req, res) => {
   const { id, status } = req.query;
